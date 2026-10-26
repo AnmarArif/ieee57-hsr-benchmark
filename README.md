@@ -2,7 +2,7 @@
 
 Companion data-generation notebook for
 
-> A. Arif, "AC-Guided Co-Expansion Planning of Power Grids Hosting High-Speed Railways," *IEEE Access*, 2026 (under review).
+> A. Arif, "AC-Guided Co-Expansion Planning of Power Grids Hosting High-Speed Railways," *IEEE Access*, 2026, accepted for publication.
 
 `ieee57_hsr_benchmark.ipynb` builds the coupled test system of the paper from public data and declared assumptions. It produces the expanded MATPOWER case of the IEEE 57-bus host after six line taps, the corridor and traction-substation geometry, the calibrated CR400AF-class trainset and its one-second simulation of the nominal timetable, the per-substation demand and regeneration signature, the pre-expansion AC diagnostics, the 15-minute planning envelopes, and the seeded two-regime timetable-jitter generator with the seed families used for training and validation. All outputs are collected under `benchmark/`.
 
@@ -23,6 +23,8 @@ Python 3.10 or later with `numpy`, `pandas`, `matplotlib` and `pypower` (see `re
 | `hsr_nominal_envelopes.npz` | 15-minute envelopes of the nominal day (energy layer, coincident-peak layer, regeneration snapshots, 10-s reserve products) |
 | `hsr_days_training.npz` | the 50-day training family (seeds 20000+k, 21000+k), reduced envelopes per day |
 | `hsr_days_family40000.npz` | the paper's 100-day validation family (seeds 40000+k, 41000+k) |
+
+The three further validation families of the seed-sensitivity study (Table 3 of the paper) use the same generator with seed bases 35000, 45000 and 50000. To export them, set `EXPORT_FAMILIES = [40000, 35000, 45000, 50000]` in Section 10.3 of the notebook and run it. Each family takes about two minutes and is written as `hsr_days_family<base>.npz`.
 
 ## Citation
 
